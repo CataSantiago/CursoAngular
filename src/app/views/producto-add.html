@@ -1,0 +1,37 @@
+<h3>{{titulo}}</h3>
+<hr/>
+
+<form #formProducto="ngForm" (ngSubmit)="onSubmit()" class="col-lg-6 clearfix" id="form-producto">
+	
+	<label>
+		Nombre
+		<span *ngIf="!nombre.valid && nombre.touched" class="badge bg-danger">El nombre es obligatorio</span>
+	</label>
+	<input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" required />
+	
+
+	<br/>
+	<label>
+		Descripcion
+		<span *ngIf="!descripcion.valid && descripcion.touched" class="badge bg-danger">La descripcion es obligatoria</span>
+	</label>
+	<textarea type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" required></textarea>
+
+	<br/>
+	<label>
+		Precio
+		<span *ngIf="!precio.valid && precio.touched" class="badge bg-danger">El precio no es correcto</span>
+	</label>
+	<input type="text" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" class="form-control" required pattern="[0-9]+" />
+
+	<br/>
+	<label>Imagen</label>
+	<div *ngIf="is_edit">
+		<img src="http://localhost/curso-angular-backend/uploads/{{producto.imagen}}" width="60" />
+	</div>
+	<input type="file"  class="form-control" (change)="fileChangeEvent($event)"/>
+
+
+	<br/>
+	<input type="submit" value="{{titulo}}" [disabled]="!formProducto.form.valid" class="btn btn-success"/>
+</form>

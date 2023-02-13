@@ -1,0 +1,15 @@
+<div *ngIf="!producto">
+	<p>Cargando producto...</p>
+</div>
+
+<div class="row" *ngIf="producto">
+	<div class="col-lg-2 clearfix" *ngIf="producto.imagen">
+		<br>
+		<img src="http://localhost/curso-angular-backend/uploads/{{producto.imagen}}" class="producto_imagen"/>
+	</div>
+	<div class="col-lg-10 clearfix">
+		<h3>{{producto.nombre}}</h3>
+		<p>{{producto.descripcion}}</p>
+		<p><strong>{{producto.precio}}</strong></p>
+	</div>
+</div>
